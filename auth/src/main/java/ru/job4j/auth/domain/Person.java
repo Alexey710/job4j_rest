@@ -1,9 +1,6 @@
 package ru.job4j.auth.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +11,10 @@ public class Person {
 
     private String login;
     private String password;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "employee_id")
+    private Employee employee;
 
     public static Person of(int id, String login, String password) {
         Person person = new Person();
